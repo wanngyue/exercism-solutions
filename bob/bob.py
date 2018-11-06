@@ -13,14 +13,13 @@ def is_question(phrase):
 
 
 def hey(phrase):
-    striped_phrase = phrase.strip(' \t\n\r')
-    if len(striped_phrase) == 0:
+    phrase = phrase.strip()
+    if not phrase:
         return 'Fine. Be that way!'
-    elif is_question(striped_phrase):
-        if is_yelling(striped_phrase[:-2]):
-            return 'Calm down, I know what I\'m doing!'
-        else:
-            return 'Sure.'
-    elif is_yelling(striped_phrase):
+    elif is_question(phrase) and is_yelling(phrase):
+        return 'Calm down, I know what I\'m doing!'
+    elif is_question(phrase):
+        return 'Sure.'
+    elif is_yelling(phrase):
         return 'Whoa, chill out!'
     return 'Whatever.'
