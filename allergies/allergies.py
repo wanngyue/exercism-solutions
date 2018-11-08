@@ -11,11 +11,11 @@ class Allergies(object):
     ]
 
     def __init__(self, score):
-        self.bits = [int(c) for c in bin(score)[2:].zfill(8)[::-1]]
+        self.l = [self.allergies[i] for i in range(8) if (score & (1 << i))]
 
     def is_allergic_to(self, item):
-        return item in self.allergies and self.bits[self.allergies.index(item)]
+        return item in self.lst
 
     @property
     def lst(self):
-        return [self.allergies[i] for i, is_allergic in enumerate(self.bits) if is_allergic]
+        return self.l
