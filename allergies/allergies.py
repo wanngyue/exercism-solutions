@@ -11,8 +11,7 @@ class Allergies(object):
     ]
 
     def __init__(self, score):
-        self.lst = [allergen for allergen in self.allergies if (score & (1 << self.allergies.index(allergen)))]
+        self.lst = [allergen for i, allergen in enumerate(self.allergies) if (score & (1 << i))]
 
     def is_allergic_to(self, item):
         return item in self.lst
-
